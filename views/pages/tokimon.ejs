@@ -29,24 +29,22 @@
       </tr>
 
       <!-- enter the database entries here -->
-      <% if(dbRows != null)
-            dbRows.forEach((row) => { %>
+
 
       <tr>
-        <td><%= row.name %></td>
-        <td><%= row.weight %></td>
-        <td><%= row.height %></td>
-        <td><%= row.fly %></td>
-        <td><%= row.fight %></td>
-        <td><%= row.fire %></td>
-        <td><%= row.water %></td>
-        <td><%= row.electric %></td>
-        <td><%= row.ice %></td>
-        <td><%= row.total %></td>
+        <td> row.name %></td>
+        <td> row.weight %></td>
+        <td> row.height %></td>
+        <td> row.fly %></td>
+        <td> row.fight %></td>
+        <td> row.fire %></td>
+        <td> row.water %></td>
+        <td> row.electric %></td>
+        <td> row.ice %></td>
+        <td> row.total %></td>
         <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
       </tr>
 
-      <% }); %>
 
     </table>
   </body>
