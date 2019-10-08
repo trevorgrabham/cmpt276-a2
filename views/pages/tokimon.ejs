@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tokimon</title>
+    <link rel="stylesheet" href="../stylesheets/tokimon.css"/>
+  </head>
+  <body>
+    <div id="header">
+      <button type="button" id="addButton">ADD</button>
+      <div id="search">
+        <input type="search" id="searchBar" placeholder="search for Tokimon..."/>
+        <button type="button" id="searchButton">SEARCH</button>
+      </div>
+    </div>
+    <table>
+      <tr>
+        <th>NAME</th>
+        <th>WEIGHT</th>
+        <th>HEIGHT</th>
+        <th>FLY</th>
+        <th>FIGHT</th>
+        <th>FIRE</th>
+        <th>WATER</th>
+        <th>ELECTRIC</th>
+        <th>ICE</th>
+        <th>TOTAL</th>
+        <th></th>           <!-- the last row will be for the
+                                edit and delete buttons -->
+      </tr>
+
+      <!-- enter the database entries here -->
+      <% if(dbRows != null)
+            dbRows.forEach((row) => { %>
+
+      <tr>
+        <td><%= row.name %></td>
+        <td><%= row.weight %></td>
+        <td><%= row.height %></td>
+        <td><%= row.fly %></td>
+        <td><%= row.fight %></td>
+        <td><%= row.fire %></td>
+        <td><%= row.water %></td>
+        <td><%= row.electric %></td>
+        <td><%= row.ice %></td>
+        <td><%= row.total %></td>
+        <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
+      </tr>
+
+      <% }); %>
+
+    </table>
+  </body>
+</html>
