@@ -8,8 +8,8 @@ const app = express();
   app.set('view engine', 'ejs');
   app.get('/', (req, res) => res.render('pages/tokimon'));
   app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
-  app.post('/display', (req, res) => {
-    var results = {name: "test"
+  app.post('/display/:name', (req, res) => {
+    var results = {name: name
       weight: 0
       height: 0
       fly: 0
@@ -21,5 +21,14 @@ const app = express();
       total: 0
     }
     res.render('pages/displayTokimon', results);
+  });
+  app.get('/add', (req, res) => res.render('pages/newTokimon'));
+  app.post('/search', (req, res) => {
+    var query = `SELECT * FROM tokimon WHERE NAME=${req.body.search}`;
+    if(query == null){
+        // send error message
+    }  else{
+      res.render('pages/displayTokimon', query);
+    }
   });
   app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
