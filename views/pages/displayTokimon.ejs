@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- object info
+    name, weight, height, fly, fight, fire, water, electric, ice, total -->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title><%= name %></title>
+  </head>
+  <body>
+    <div class="name"><%= name %></div>
+    <%  var max = weight;
+        if(height > max)
+          max = height;
+        if(fly > max)
+          max = fly;
+        if(fight > max)
+          max = fight;
+        if(fire > max)
+          max = fire;
+        if(water > max)
+          max = water;
+        if(electric > max)
+          max = electric;
+        if(ice > max)
+          max = ice;
+        weight = weight/max;
+        height = height/max;
+        fly = fly/max;
+        fight = fight/max;
+        fire = fire/max;
+        water = water/max;
+        electric = electric/max;
+        ice = ice/max;
+        findElementById("weight").style.flex = `1 1 ${weight}`;
+        findElementById("height").style.flex = `1 1 ${height}`;
+        findElementById("fly").style.flex = `1 1 ${fly}`;
+        findElementById("fight").style.flex = `1 1 ${fight}`;
+        findElementById("fire").style.flex = `1 1 ${fire}`;
+        findElementById("water").style.flex = `1 1 ${water}`;
+        findElementById("electric").style.flex = `1 1 ${electric}`;
+        findElementById("ice").style.flex = `1 1 ${ice}`;
+      %>
+    <div class="chart">
+      <div id="weight"></div>
+      <div id="height"></div>
+      <div id="fly"></div>
+      <div id="fight"></div>
+      <div id="fire"></div>
+      <div id="water"></div>
+      <div id="electric"></div>
+      <div id="ice"></div>
+    </div>
+    <div class="total"><%= total %></div>
+  </body>
+</html>

@@ -24,6 +24,7 @@
         <th>ELECTRIC</th>
         <th>ICE</th>
         <th>TOTAL</th>
+        <th>LINK</th>
         <th></th>           <!-- the last row will be for the
                                 edit and delete buttons -->
       </tr>
@@ -32,7 +33,7 @@
 
 
       <tr>
-        <td> row.name    %></td>
+        <td id="displayName"> row.name    %></td>
         <td> row.weight %></td>
         <td> row.height %></td>
         <td> row.fly %></td>
@@ -43,6 +44,7 @@
         <td> row.ice %></td>
         <td> row.total %></td>
         <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
+<!-- we need to access the parent of the calling button and then access the name child of the parent -->
       </tr>
 
 
