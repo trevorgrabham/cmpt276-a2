@@ -1,0 +1,41 @@
+Epic
+  a database that users can enter tokimon into
+    users can edit and delete previous entries
+    graphically displays bar graphs for each specific tokimon
+
+Stories
+  each users owns the database (can edit and delete the data)
+
+  1) the first user catches a new tokimon to add to the empty database
+      the user clicks the add button
+      the add button sends the user to the addtokimon page
+      the user enters the tokimons details into the proper text boxes
+      the system error checks to make sure that the tokimon name doesn't match another
+      the user clicks the submit button
+      the data gets turned into an object
+      the appropriate data gets entered into the database
+      the user is redirected back to the home page (or the specific tokimon page)
+  2) the user wants to edit the tokimon entered by another user
+      the user clicks the edit button
+      the user is taken to the newtokimon page with the current data set as default
+      the user changes whatever text box is appropriate (except the name)
+      the user clicks the submit button
+      the data gets turned into an object
+      the appropriate data gets entered into the database
+      the user is redirected back to the home page (or the specific tokimon page)
+  3) the user wants to delete a tokimon entered by another user
+      the user clicks the delete button
+      the tokimon is found in the database
+      we delete the tokimon from the database
+      we return the user to the home page
+  4) the user wants to enter a tokimon into the database that already exists
+      this should be handled in the newtokimon page
+  5) the user is having trouble finding a specific tokimon so it searches for it
+      the user enters the tokimons name into the search bar
+      the user clicks the submit button
+      we search the database for the tokimon
+      if we dont find it we send back a notice
+      if we do find it then we send the user to the tokimons page
+  6) the user wants to see more data on a specific tokimon so it clicks on the link
+      the user clicks on the link
+      we send the user to the specific tokimon page
