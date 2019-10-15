@@ -37,7 +37,7 @@ const app = express();
     name = name.slice(1,name.end);
     try{
       const client = await pool.connect();
-      await client.query(`delete from tokimon where name=${name}`);
+      await client.query(`delete from tokimon where name='${name}'`);
       const result = await client.query('select * from tokimon');
       if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
