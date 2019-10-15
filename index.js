@@ -25,13 +25,7 @@ const app = express();
       res.send("Error " + err);
     }
   });
-  app.get('/newTokimon', (req, res) => res.render('pages/newTokimon', {name: null}));
-
-  app.get('/newTokimon/:name', (req, res) => {
-    var name = req.params.name;
-    var data = {name: name.slice(1,name.end)};
-    res.render('pages/newTokimon', data);
-  });
+  app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
   app.get('/delete/:name',async (req, res) => {
     var name = req.params.name;
     name = name.slice(1,name.end);
@@ -72,6 +66,43 @@ const app = express();
       res.render('pages/displayTokimon', query);
     }
   });
+  app.get('/edit/:name', async (req, res) => {
+    var name = req.params.name;
+    try{
+      const client = await pool.connect();
+      var data = client.query(`select * from tokimon where name='${name.slice(1,name.end)}'`);
+      var resRows = {rows: (data) ? data.rows : null};
+      res.render('pages/edit', resRows);
+      client.release();
+    } catch(err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  });
+  app.post('/edit', (req, res) => {
+    var name = req.body.name;
+    var weight = parseInt(req.body.weight);
+    var height = parseInt(req.body.height);
+    var fly = parseInt(req.body.fly);
+    var fight = parseInt(req.body.fight);
+    var fire = parseInt(req.body.fire);
+    var water = parseInt(req.body.water);
+    var electric = parseInt(req.body.electric);
+    var ice = parseInt(req.body.ice);
+    var total = fly + fight + fire + water + electric + ice;
+    try{
+      const client = await pool.connect();
+      client.query(`update tokimon set weight=${weight}, height=${height}, fly=${fly},fight=${fight},fire=${fire},water=${water},electric=${electric},ice=${ice},total=${total} where name='${name}'`);
+      const result = await client.query('select * from tokimon');
+      if(result){console.table(result.rows);}
+      var resRows = {rows: (result) ? result.rows : null};
+      res.render('pages/tokimon', resRows);
+      client.release();
+    } catch(err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  });
   app.post('/addNew', async (req, res) => {
     var name = req.body.name;
     var weight = parseInt(req.body.weight);
@@ -85,13 +116,7 @@ const app = express();
     var total = fly + fight + fire + water + electric + ice;
     try{
       const client = await pool.connect();
-      var test = await client.query(`select * from tokimon where name='${name}'`);
-      if(test.rows.name != undefined){
-        console.log(`updating\n ${test.rows.name} \n that was tests value`);
-        client.query(`update tokimon set weight=${weight},height=${height},fly=${fly},fight=${fight},fire=${fire},water=${water},electric=${electric},ice=${ice},total=${total} where name='${name}'`);
-      } else {
-        client.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
-      }
+      client.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
       const result = await client.query('select * from tokimon');
       if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};

@@ -50,7 +50,7 @@
           <td><%=row.total%></td>
           <% var href = `../displayTokimon/:${row.name}`; %>
           <td><a id="link" href=<%= href %>>link</a></td>
-          <% var actionString = "/newTokimon/:" + row.name; %>
+          <% var actionString = "/edit/:" + row.name; %>
 
           <td>
             <form method="get" action=<%= actionString %>>
@@ -59,7 +59,7 @@
               <% actionString = "/delete/:" + row.name; %>
             <form method="get" action=<%= actionString %>>
               <input type="submit" name="delete" value="DELETE" />
-            </form> 
+            </form>
           </td>
         </tr>
         <% });
