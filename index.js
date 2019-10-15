@@ -39,9 +39,23 @@ const app = express();
   app.post('/search', (req, res) => {
     var query = pool.query(`SELECT * FROM tokimon WHERE NAME=${req.body.search}`);
     if(query == null){
-        // send error message
+      res.render("/pages/error");
     }  else{
       res.render('pages/displayTokimon', query);
     }
+  });
+  app.post('/addNew', (req, res) => {
+    var name = req.body.name;
+    var weight = parseInt(req.body.weight);
+    var height = parseInt(req.body.height);
+    var fly = parseInt(req.body.fly);
+    var fight = parseInt(req.body.fight);
+    var fire = parseInt(req.body.fire);
+    var water = parseInt(req.body.water);
+    var electric = parseInt(req.body.electric);
+    var ice = parseInt(req.body.ice);
+    var total = fly + fight + fire + water + electric + ice;
+    pool.query(`insert into tokimon values (${name}, ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
+    res.render('/pages/tokimon');
   });
   app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
