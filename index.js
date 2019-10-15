@@ -11,9 +11,9 @@ const app = express();
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs');
   app.get('/', (req, res) => {
-    var res = pool.query("SELECT * FROM tokimon");
-    if(res != null){
-      var resRows = {'rows': res.rows};
+    var result = pool.query("SELECT * FROM tokimon");
+    if(result != null){
+      var resRows = {'rows': result.rows};
     }
     else{
       var resRows = null;
