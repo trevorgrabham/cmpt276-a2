@@ -31,7 +31,7 @@ const app = express();
     var data = {name: name};
     res.render('/pages/newTokimon', data);
   });
-  app.get('/delete/:name' (req, res) => {
+  app.get('/delete/:name', (req, res) => {
     var name = req.params.name;
     try{
       const client = await pool.connect();
