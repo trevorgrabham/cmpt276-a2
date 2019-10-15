@@ -33,24 +33,26 @@
 
       <!-- enter the database entries here -->
 
-      <% rows.forEach(function(row){ %>
-      <tr>
-        <td id="displayName"><%=row.name%></td>
-        <td><%=row.weight%></td>
-        <td><%=row.height%></td>
-        <td><%=row.fly%></td>
-        <td><%=row.fight%></td>
-        <td><%=row.fire%></td>
-        <td><%=row.water%></td>
-        <td><%=row.electric%></td>
-        <td><%=row.ice%></td>
-        <td><%=row.total%></td>
-        <% getElementById("link").href = `../displayTokimon/:${row.name}`; %>
-        <td><a id="link">link</a></td>
-        <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
-<!-- we need to access the parent of the calling button and then access the name child of the parent -->
-      </tr>
-      <% }); %>
+      <% if(rows != null){
+          rows.forEach(function(row){ %>
+        <tr>
+          <td id="displayName"><%=row.name%></td>
+          <td><%=row.weight%></td>
+          <td><%=row.height%></td>
+          <td><%=row.fly%></td>
+          <td><%=row.fight%></td>
+          <td><%=row.fire%></td>
+          <td><%=row.water%></td>
+          <td><%=row.electric%></td>
+          <td><%=row.ice%></td>
+          <td><%=row.total%></td>
+          <% getElementById("link").href = `../displayTokimon/:${row.name}`; %>
+          <td><a id="link">link</a></td>
+          <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
+  <!-- we need to access the parent of the calling button and then access the name child of the parent -->
+        </tr>
+        <% });
+      }%>
 
 
     </table>
