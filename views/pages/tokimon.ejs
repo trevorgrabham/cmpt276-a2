@@ -48,7 +48,7 @@
           <td><%=row.electric%></td>
           <td><%=row.ice%></td>
           <td><%=row.total%></td>
-          <% getElementById("link").href = `../displayTokimon/:${row.name}`; %>
+          <% document.getElementById("link").href = `../displayTokimon/:${row.name}`; %>
           <td><a id="link">link</a></td>
           <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
   <!-- we need to access the parent of the calling button and then access the name child of the parent -->
