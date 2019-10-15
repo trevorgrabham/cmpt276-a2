@@ -11,8 +11,9 @@ const app = express();
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs');
   app.get('/', async (req, res) => {
-    const client = await pool.connect();
+    console.log(process.env.DATABASE_URL);
     try{
+      const client = await pool.connect();
       const result = await client.query('select * from tokimon');
       if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
