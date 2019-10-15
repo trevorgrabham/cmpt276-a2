@@ -12,12 +12,8 @@ const app = express();
   app.set('view engine', 'ejs');
   app.get('/', (req, res) => {
     var result = pool.query("SELECT * FROM tokimon");
-    if(result != null){
-      var resRows = {'rows': result.rows};
-    }
-    else{
-      var resRows = null;
-    }
+    if(result){console.table(result.rows);}
+    var resRows = {rows: (result) ? result.rows : null};
     res.render('pages/tokimon', resRows);
   });
   app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
