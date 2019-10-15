@@ -33,7 +33,7 @@
 
       <!-- enter the database entries here -->
 
-      <% rows.forEach(row){ %>
+      <% rows.forEach(function(row){ %>
       <tr>
         <td id="displayName"><%=row.name%></td>
         <td><%=row.weight%></td>
@@ -50,7 +50,7 @@
         <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
 <!-- we need to access the parent of the calling button and then access the name child of the parent -->
       </tr>
-      <% } %>
+      <% }); %>
 
 
     </table>
