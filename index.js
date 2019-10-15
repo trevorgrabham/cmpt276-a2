@@ -55,7 +55,7 @@ const app = express();
     var electric = parseInt(req.body.electric);
     var ice = parseInt(req.body.ice);
     var total = fly + fight + fire + water + electric + ice;
-    pool.query(`insert into tokimon values (${name}, ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
+    pool.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
     res.render('/pages/tokimon');
   });
   app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
