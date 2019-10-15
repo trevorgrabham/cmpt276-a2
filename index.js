@@ -15,6 +15,9 @@ const app = express();
     if(res != null){
       var resRows = {'rows': res.rows};
     }
+    else{
+      var resRows = null;
+    }
     res.render('pages/tokimon', resRows);
   });
   app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
