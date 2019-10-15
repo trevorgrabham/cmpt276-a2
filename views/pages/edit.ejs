@@ -7,24 +7,25 @@
   <body>
     <form action="/edit" method="post">
       NAME: <br>
-      <%= name %>
-      <input type="text" name="name" <% if(name) { %>value = <%= name %> <% } %>/><br>
+      <% if(rows != null){
+          rows.forEach(function(row){ %>
+      <input type="text" name="name" value = <%= row.name %>/><br>
       WEIGHT: <br>
-      <input type="text" name="weight" <% if(weight) { %>value = <%= weight %> <% } %>/><br>
+      <input type="text" name="weight" value = <%= row.weight %>/><br>
       HEIGHT: <br>
-      <input type="text" name="height" <% if(height) { %>value = <%= height %> <% } %>/><br>
+      <input type="text" name="height" value = <%= row.height %>/><br>
       FLY: <br>
-      <input type="text" name="fly" <% if(fly) { %>value = <%= fly %> <% } %>/><br>
+      <input type="text" name="fly" value = <%= row.fly %><br>
       FIGHT: <br>
-      <input type="text" name="fight" <% if(fight) { %>value = <%= fight %> <% } %>/><br>
+      <input type="text" name="fight" value = <%= row.fight %>/><br>
       FIRE: <br>
-      <input type="text" name="fire" <% if(fire) { %>value = <%= fire %> <% } %>/><br>
+      <input type="text" name="fire" value = <%= row.fire %>/><br>
       WATER: <br>
-      <input type="text" name="water" <% if(water) { %>value = <%= water %> <% } %>/><br>
+      <input type="text" name="water" value = <%= row.water %>/><br>
       ELECTRIC: <br>
-      <input type="text" name="electric" <% if(electric) { %>value = <%= electric %> <% } %>/><br>
+      <input type="text" name="electric" value = <%= row.electric %>/><br>
       ICE: <br>
-      <input type="text" name="ice" <% if(ice) { %>value = <%= ice %> <% } %>/><br><br>
+      <input type="text" name="ice" value = <%= row.ice %>/><br><br>
       <input type="submit" value="SUBMIT" id="submitButton"/>
     </form>
   </body>
