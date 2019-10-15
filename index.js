@@ -22,16 +22,16 @@ const app = express();
   });
   app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
   app.post('/display/:name', (req, res) => {
-    var results = {name: name
-      weight: 0
-      height: 0
-      fly: 0
-      fight: 0
-      fire: 0
-      water: 0
-      electric: 0
-      ice: 0
-      total: 0
+    var results = {"name": name
+      "weight": 0
+      "height": 0
+      "fly": 0
+      "fight": 0
+      "fire": 0
+      "water": 0
+      "electric": 0
+      "ice": 0
+      "total": 0
     }
     res.render('pages/displayTokimon', results);
   });
