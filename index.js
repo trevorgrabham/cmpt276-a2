@@ -30,15 +30,7 @@ const app = express();
   app.get('/newTokimon/:name', (req, res) => {
     var name = req.params.name;
     var data = {name: name.slice(1,name.end)};
-    try{
-      const client = await pool.connect();
-      await client.query(`delete from tokimon where name='${name}'`);
-      res.render('pages/newTokimon', data);
-      client.release();
-    } catch(err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
+    res.render('pages/newTokimon', data);
   });
   app.get('/delete/:name',async (req, res) => {
     var name = req.params.name;
@@ -59,7 +51,7 @@ const app = express();
 
   app.post('/display/:name', (req, res) => {
     var name = req.params.name;
-    var results = {"name": name}
+    var results = {name: name}
     results.weight = 0;
     results.height = 0;
     results.fly = 0;
@@ -73,7 +65,7 @@ const app = express();
   });
   app.get('/add', (req, res) => res.render('pages/newTokimon'));
   app.post('/search', (req, res) => {
-    var query = pool.query(`SELECT * FROM tokimon WHERE NAME=${req.body.search}`);
+    var query = pool.query(`SELECT * FROM tokimon WHERE NAME='${req.body.search}'`);
     if(query == null){
       res.render("/pages/error");
     }  else{
@@ -93,7 +85,12 @@ const app = express();
     var total = fly + fight + fire + water + electric + ice;
     try{
       const client = await pool.connect();
-      client.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
+      var test = await client.query(`select * from tokimon where name='${name}'`);
+      if(test){
+        client.query(`update tokimon set weight=${weight},height=${height},fly=${fly},fight=${fight},fire=${fire},water=${water},electric=${electric},ice=${ice},total=${total},`)
+      }else {
+        client.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
+      }
       const result = await client.query('select * from tokimon');
       if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
