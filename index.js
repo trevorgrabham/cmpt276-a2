@@ -79,7 +79,7 @@ const app = express();
       res.send("Error " + err);
     }
   });
-  app.post('/edit', (req, res) => {
+  app.post('/edit',async (req, res) => {
     var name = req.body.name;
     var weight = parseInt(req.body.weight);
     var height = parseInt(req.body.height);
