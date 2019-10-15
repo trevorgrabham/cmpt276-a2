@@ -29,7 +29,7 @@ const app = express();
   app.get('/newTokimon/:name', (req, res) => {
     var name = req.params.name;
     var data = {name: name};
-    res.render('/pages/newTokimon', data);
+    res.render('pages/newTokimon', data);
   });
   /*
   app.get('/delete/:name',async (req, res) => {
