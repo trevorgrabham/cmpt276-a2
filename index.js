@@ -61,9 +61,9 @@ const app = express();
     var electric = parseInt(req.body.electric);
     var ice = parseInt(req.body.ice);
     var total = fly + fight + fire + water + electric + ice;
-    pool.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
     try{
       const client = await pool.connect();
+      client.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
       const result = await client.query('select * from tokimon');
       if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
