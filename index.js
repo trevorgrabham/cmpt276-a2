@@ -68,7 +68,7 @@ const app = express();
   });
   app.get('/edit/:name', async (req, res) => {
     var name = req.params.name;
-    var data = {name: name.slice(1,name.end-1)};
+    var data = {name: name.slice(1,name.end)};
     res.render('pages/edit', data);
   });
   app.post('/edit',async (req, res) => {
