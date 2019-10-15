@@ -51,13 +51,16 @@
           <% var href = `../displayTokimon/:${row.name}`; %>
           <td><a id="link" href=<%= href %>>link</a></td>
           <% var actionString = "/newTokimon/:" + row.name; %>
-          <td><form method="get" action=<%= actionString %>>
-                <input type="submit" name="edit" value="EDIT" />
-              </form>
+
+          <td>
+            <form method="get" action=<%= actionString %>>
+              <input type="submit" name="edit" value="EDIT" />
+            </form>
               <% actionString = "/delete/:" + row.name; %>
-              <form method="get" action=<%= actionString %>>
-                <input type="submit" name="delete" value="DELETE" />
-              </form>  
+            <form method="get" action=<%= actionString %>>
+              <input type="submit" name="delete" value="DELETE" />
+            </form> 
+          </td>
         </tr>
         <% });
       }%>

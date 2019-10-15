@@ -7,7 +7,7 @@
   <body>
     <form action="/addNew" method="post">
       NAME: <br>
-      <input type="text" name="name"/><br>
+      <input type="text" name="name" <% if(name) { %>value = <%= name %> <% } %>/><br>
       WEIGHT: <br>
       <input type="text" name="weight"/><br>
       HEIGHT: <br>
