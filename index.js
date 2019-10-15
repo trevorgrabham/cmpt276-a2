@@ -50,8 +50,7 @@ const app = express();
       res.render('pages/displayTokimon', query);
     }
   });
-  app.post('/addNew', (req, res) => {
-    console.table(req.body);
+  app.post('/addNew', async (req, res) => {
     var name = req.body.name;
     var weight = parseInt(req.body.weight);
     var height = parseInt(req.body.height);
@@ -63,6 +62,7 @@ const app = express();
     var ice = parseInt(req.body.ice);
     var total = fly + fight + fire + water + electric + ice;
     pool.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
-    res.render('/pages/tokimon');
+    var result = pool.query('select * from tokimon');
+    res.render('/pages/tokimon', result);
   });
   app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
