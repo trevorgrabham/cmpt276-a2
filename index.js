@@ -16,7 +16,6 @@ const app = express();
     try{
       const client = await pool.connect();
       const result = await client.query('select * from tokimon');
-      if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
       res.render('pages/tokimon', resRows);
       client.release();
@@ -33,7 +32,6 @@ const app = express();
       const client = await pool.connect();
       await client.query(`delete from tokimon where name='${name}'`);
       const result = await client.query('select * from tokimon');
-      if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
       res.render('pages/tokimon', resRows);
       client.release();
@@ -45,7 +43,7 @@ const app = express();
 
   app.post('/display/:name', (req, res) => {
     var name = req.params.name;
-    var results = {name: name}
+    var results = {name: name};
     results.weight = 0;
     results.height = 0;
     results.fly = 0;
@@ -60,10 +58,11 @@ const app = express();
   app.get('/add', (req, res) => res.render('pages/newTokimon'));
   app.post('/search', (req, res) => {
     var query = pool.query(`SELECT * FROM tokimon WHERE NAME='${req.body.search}'`);
-    if(query == null){
+    if(query){
       res.render("/pages/error");
     }  else{
-      res.render('pages/displayTokimon', query);
+      query = {rows: query.rows};
+      res.render('pages/displayTokimon', query.rows[0]);
     }
   });
   app.get('/edit/:name', async (req, res) => {
@@ -86,7 +85,6 @@ const app = express();
       const client = await pool.connect();
       client.query(`update tokimon set weight=${weight}, height=${height}, fly=${fly},fight=${fight},fire=${fire},water=${water},electric=${electric},ice=${ice},total=${total} where name='${name}'`);
       const result = await client.query('select * from tokimon');
-      if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
       res.render('pages/tokimon', resRows);
       client.release();
@@ -110,7 +108,6 @@ const app = express();
       const client = await pool.connect();
       client.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
       const result = await client.query('select * from tokimon');
-      if(result){console.table(result.rows);}
       var resRows = {rows: (result) ? result.rows : null};
       res.render('pages/tokimon', resRows);
       client.release();
