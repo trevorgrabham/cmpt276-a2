@@ -87,7 +87,7 @@ const app = express();
       const client = await pool.connect();
       var test = await client.query(`select * from tokimon where name='${name}'`);
       if(true){
-        console.log(`updating\n ${test.rows == null} \n that was tests value`);
+        console.log(`updating\n ${test.rows} \n that was tests value`);
         client.query(`update tokimon set weight=${weight},height=${height},fly=${fly},fight=${fight},fire=${fire},water=${water},electric=${electric},ice=${ice},total=${total} where name='${name}'`);
       } else {
         client.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
