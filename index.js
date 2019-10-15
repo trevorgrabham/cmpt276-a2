@@ -12,7 +12,6 @@ const app = express();
   app.set('view engine', 'ejs');
   app.get('/', async (req, res) => {
     console.log(process.env.DATABASE_URL);
-/*
     try{
       const client = await pool.connect();
       const result = await client.query('select * from tokimon');
@@ -24,7 +23,6 @@ const app = express();
       console.error(err);
       res.send("Error " + err);
     }
-    */
   });
   app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
   app.post('/display/:name', (req, res) => {
