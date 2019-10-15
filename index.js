@@ -22,6 +22,7 @@ const app = express();
   });
   app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
   app.post('/display/:name', (req, res) => {
+    var name = req.params.name;
     var results = {"name": name,
       "weight": 0,
       "height": 0,
