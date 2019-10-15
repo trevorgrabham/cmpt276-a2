@@ -6,7 +6,9 @@
   </head>
   <body>
     <div id="header">
-      <button type="button" id="addButton" formaction="/add" formmethod="get">ADD</button>
+      <form action="/newTokimon" method="get">
+        <button type="button" id="addButton" formaction="/add" formmethod="get">ADD</button>
+      </form>
       <div id="search">
         <form action="/search" method="post">
           <input type="search" id="searchBar" name="search" placeholder="search for Tokimon..."/>
