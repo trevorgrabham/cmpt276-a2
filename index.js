@@ -23,17 +23,16 @@ const app = express();
   app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
   app.post('/display/:name', (req, res) => {
     var name = req.params.name;
-    var results = {"name": name,
-      "weight": 0,
-      "height": 0,
-      "fly": 0,
-      "fight": 0,
-      "fire": 0,
-      "water": 0,
-      "electric": 0,
-      "ice": 0,
-      "total": 0
-    }
+    var results = {"name": name}
+    results.weight = 0;
+    results.height = 0;
+    results.fly = 0;
+    results.fight = 0;
+    results.fire = 0;
+    results.water = 0;
+    results.electric = 0;
+    results.ice = 0;
+    results.total = 0;
     res.render('pages/displayTokimon', results);
   });
   app.get('/add', (req, res) => res.render('pages/newTokimon'));
