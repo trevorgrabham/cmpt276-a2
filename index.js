@@ -29,11 +29,12 @@ const app = express();
 
   app.get('/newTokimon/:name', (req, res) => {
     var name = req.params.name;
-    var data = {name: name};
+    var data = {name: name.slice(1,name.end)};
     res.render('pages/newTokimon', data);
   });
   app.get('/delete/:name',async (req, res) => {
     var name = req.params.name;
+    name = name.slice(1,name.end);
     try{
       const client = await pool.connect();
       await client.query(`delete from tokimon where name=${name}`);
