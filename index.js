@@ -31,6 +31,7 @@ const app = express();
     var data = {name: name};
     res.render('/pages/newTokimon', data);
   });
+  /*
   app.get('/delete/:name',async (req, res) => {
     var name = req.params.name;
     try{
@@ -46,6 +47,7 @@ const app = express();
       res.send("Error " + err);
     }
   });
+  */
   app.post('/display/:name', (req, res) => {
     var name = req.params.name;
     var results = {"name": name}
