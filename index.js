@@ -13,7 +13,6 @@ const app = express();
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'ejs');
   app.get('/', async (req, res) => {
-    console.log(process.env.DATABASE_URL);
     try{
       const client = await pool.connect();
       const result = await client.query('select * from tokimon');
@@ -26,7 +25,27 @@ const app = express();
       res.send("Error " + err);
     }
   });
-  app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'));
+  app.get('/newTokimon', (req, res) => res.render('pages/newTokimon'), {name: null});
+  app.get('/newTokimon/:name', (req, res) => {
+    var name = req.params.name;
+    var data = {name: name};
+    res.render('/pages/newTokimon', data);
+  });
+  app.get('/delete/:name' (req, res) => {
+    var name = req.params.name;
+    try{
+      const client = await pool.connect();
+      await client.query(`delete from tokimon where name=${name}`);
+      const result = await client.query('select * from tokimon');
+      if(result){console.table(result.rows);}
+      var resRows = {rows: (result) ? result.rows : null};
+      res.render('pages/tokimon', resRows);
+      client.release();
+    } catch(err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
+  });
   app.post('/display/:name', (req, res) => {
     var name = req.params.name;
     var results = {"name": name}

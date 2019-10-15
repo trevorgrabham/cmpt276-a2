@@ -50,8 +50,14 @@
           <td><%=row.total%></td>
           <% var href = `../displayTokimon/:${row.name}`; %>
           <td><a id="link" href=<%= href %>>link</a></td>
-          <td><button type='button' id="editButton"/>EDIT<button type="button" id="deleteButton"/>DELETE</td>
-  <!-- we need to access the parent of the calling button and then access the name child of the parent -->
+          <% var actionString = "/newTokimon/:" + row.name; %>
+          <td><form method="get" action=<%= actionString %>>
+                <input type="submit" name="edit" value="EDIT" />
+              </form>
+              <% actionString = "/delete/:" + row.name; %>
+              <form method="get" action=<%= actionString %>>
+                <input type="submit" name="delete" value="DELETE" />
+              </form>  
         </tr>
         <% });
       }%>
