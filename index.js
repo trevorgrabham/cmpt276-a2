@@ -50,6 +50,7 @@ const app = express();
   });
   app.post('/addNew', (req, res) => {
     var name = req.body.name;
+    console.table(req.body);
     var weight = parseInt(req.body.weight);
     var height = parseInt(req.body.height);
     var fly = parseInt(req.body.fly);
