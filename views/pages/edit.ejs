@@ -7,25 +7,23 @@
   <body>
     <form action="/edit" method="post">
       NAME: <br>
-      <%   rows.forEach(function(row){ %>
-      <input type="text" name="name" value = <%= row.name %>/><br>
+      <input type="text" name="name" value = <%= name %>/><br>
       WEIGHT: <br>
-      <input type="text" name="weight" value = "<%= row.weight %>"/><br>
+      <input type="text" name="weight"/><br>
       HEIGHT: <br>
-      <input type="text" name="height" value = "<%= row.height %>"/><br>
+      <input type="text" name="height" /><br>
       FLY: <br>
-      <input type="text" name="fly" value = "<%= row.fly %>"/><br>
+      <input type="text" name="fly" /><br>
       FIGHT: <br>
-      <input type="text" name="fight" value = "<%= row.fight %>"/><br>
+      <input type="text" name="fight" /><br>
       FIRE: <br>
-      <input type="text" name="fire" value = "<%= row.fire %>"/><br>
+      <input type="text" name="fire" /><br>
       WATER: <br>
-      <input type="text" name="water" value = "<%= row.water %>"/><br>
+      <input type="text" name="water" /><br>
       ELECTRIC: <br>
-      <input type="text" name="electric" value = "<%= row.electric %>"/><br>
+      <input type="text" name="electric" /><br>
       ICE: <br>
-      <input type="text" name="ice" value = "<%= row.ice %>"/><br><br>
-      <% }); %>
+      <input type="text" name="ice" /><br><br>
       <input type="submit" value="SUBMIT" id="submitButton"/>
     </form>
   </body>

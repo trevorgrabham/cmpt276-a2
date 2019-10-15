@@ -68,16 +68,8 @@ const app = express();
   });
   app.get('/edit/:name', async (req, res) => {
     var name = req.params.name;
-    try{
-      const client = await pool.connect();
-      var data = client.query(`select * from tokimon where name='${name.slice(1,name.end)}'`);
-      var resRows = {rows: (data) ? data.rows : null};
-      res.render('pages/edit', resRows);
-      client.release();
-    } catch(err) {
-      console.error(err);
-      res.send("Error " + err);
-    }
+    var data = {name: name.slice(1,name.end)};
+    res.render('pages/edit', data);
   });
   app.post('/edit',async (req, res) => {
     var name = req.body.name;
