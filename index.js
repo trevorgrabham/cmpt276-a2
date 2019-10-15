@@ -62,8 +62,16 @@ const app = express();
     var ice = parseInt(req.body.ice);
     var total = fly + fight + fire + water + electric + ice;
     pool.query(`insert into tokimon values ('${name}', ${weight}, ${height}, ${fly},${fight},${fire},${water},${electric},${ice},${total})`);
-    var result = pool.query('select * from tokimon');
-    var resRows = {rows: (result) ? result.rows : null};
-    res.render('pages/tokimon', resRows);
+    try{
+      const client = await pool.connect();
+      const result = await client.query('select * from tokimon');
+      if(result){console.table(result.rows);}
+      var resRows = {rows: (result) ? result.rows : null};
+      res.render('pages/tokimon', resRows);
+      client.release();
+    } catch(err) {
+      console.error(err);
+      res.send("Error " + err);
+    }
   });
   app.listen(PORT, () => console.log(`Listening on ${ PORT }`));
